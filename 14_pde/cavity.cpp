@@ -39,13 +39,13 @@ void sub2(matrix &pn,matrix &p,matrix &b) {
             }
         }
         for (int i = 0; i < ny; i++) {
-			p[i][nx-1] = p[i][nx-2];    //p[:, -1] = p[:, -2]
-			p[i][0] = p[i][1];          //p[:, 0] = p[:, 1]
+            p[i][nx-1] = p[i][nx-2];    //p[:, -1] = p[:, -2]
+            p[i][0] = p[i][1];          //p[:, 0] = p[:, 1]
         }
-		for (int i = 0; i < nx; i++) {
-			p[0][i] = p[1][i];          //p[0, :] = p[1, :]
-			p[ny-1][i] = 0;             //p[-1, :] = 0
-		}
+        for (int i = 0; i < nx; i++) {
+            p[0][i] = p[1][i];          //p[0, :] = p[1, :]
+            p[ny-1][i] = 0;             //p[-1, :] = 0
+        }
     }
 }
 
@@ -56,15 +56,15 @@ void sub3(matrix &u,matrix &un,matrix &vn,matrix &v,matrix &p) {
     }
     for (int j = 1; j < ny-1; j++) {
         for (int i = 1; i < nx-1; i++) {
-            u[j][i] = un[j][i] - un[j][i] * dt / dx * (un[j][i] - un[j][i - 1])\
-                               - un[j][i] * dt / dy * (un[j][i] - un[j - 1][i])\
-                               - dt / (2 * rho * dx) * (p[j][i+1] - p[j][i-1])\
-                               + nu * dt / (dx*dx) * (un[j][i+1] - 2 * un[j][i] + un[j][i-1])\
+            u[j][i] = un[j][i] - un[j][i] * dt / dx * (un[j][i] - un[j][i - 1])
+                               - un[j][i] * dt / dy * (un[j][i] - un[j - 1][i])
+                               - dt / (2 * rho * dx) * (p[j][i+1] - p[j][i-1])
+                               + nu * dt / (dx*dx) * (un[j][i+1] - 2 * un[j][i] + un[j][i-1])
                                + nu * dt / (dy*dy) * (un[j+1][i] - 2 * un[j][i] + un[j-1][i]);
-            v[j][i] = vn[j][i] - vn[j][i] * dt / dx * (vn[j][i] - vn[j][i - 1])\
-                               - vn[j][i] * dt / dy * (vn[j][i] - vn[j - 1][i])\
-                               - dt / (2 * rho * dx) * (p[j+1][i] - p[j-1][i])\
-                               + nu * dt / (dx*dx) * (vn[j][i+1] - 2 * vn[j][i] + vn[j][i-1])\
+            v[j][i] = vn[j][i] - vn[j][i] * dt / dx * (vn[j][i] - vn[j][i - 1])
+                               - vn[j][i] * dt / dy * (vn[j][i] - vn[j - 1][i])
+                               - dt / (2 * rho * dx) * (p[j+1][i] - p[j-1][i])
+                               + nu * dt / (dx*dx) * (vn[j][i+1] - 2 * vn[j][i] + vn[j][i-1])
                                + nu * dt / (dy*dy) * (vn[j+1][i] - 2 * vn[j][i] + vn[j-1][i]);
         }
     }
@@ -86,9 +86,9 @@ void sub3(matrix &u,matrix &un,matrix &vn,matrix &v,matrix &p) {
 
 int main() {
     matrix u(ny,vector<double>(nx)); 
-	matrix v(ny,vector<double>(nx));
-	matrix p(ny,vector<double>(nx));
-	matrix b(ny,vector<double>(nx));
+    matrix v(ny,vector<double>(nx));
+    matrix p(ny,vector<double>(nx));
+    matrix b(ny,vector<double>(nx));
     matrix un(ny, vector<double>(nx));
     matrix vn(ny, vector<double>(nx));
     matrix pn(ny, vector<double>(nx));
